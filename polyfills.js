@@ -1,4 +1,10 @@
 Array.prototype.myReduce = function(callback, initialValue){
+    if (this == null) {
+      throw new TypeError("Array.prototype.map called on null or undefined");
+    }
+    if (typeof callback !== "function") {
+      throw new TypeError(callback + " is not a function");
+    }
     let acc;
     let startIndex;
 
@@ -40,3 +46,29 @@ const groups = todos.myReduce((acc, each) => {
 }, {})
 
 console.log(groups)
+
+Array.prototype.myMap = function(callback, thisArg) {
+    if (this == null) {
+      throw new TypeError("Array.prototype.map called on null or undefined");
+    }
+    if (typeof callback !== "function") {
+      throw new TypeError(callback + " is not a function");
+    }
+    let transformed = []
+    for(let i=0;i<this.length;i++){
+        transformed.push(callback.apply(thisArg, [this[i], i, this]))
+    }
+    return transformed
+}
+
+const multiplier = {
+  factor: 2
+};
+
+let numbers = [1,2,3,4]
+let transformed = numbers.myMap((each, i, arr) => each*each)
+console.log(transformed)
+
+let doubled = numbers.myMap(function(each, i, arr){return each*this.factor}, multiplier)  
+//passing object, must use function declaration syntax not arrow function
+console.log(doubled)
