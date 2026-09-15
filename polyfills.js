@@ -72,3 +72,23 @@ console.log(transformed)
 let doubled = numbers.myMap(function(each, i, arr){return each*this.factor}, multiplier)  
 //passing object, must use function declaration syntax not arrow function
 console.log(doubled)
+
+
+Array.prototype.myFilter = function(callback) {
+    if (this == null) {
+      throw new TypeError("Array.prototype.map called on null or undefined");
+    }
+    if (typeof callback !== "function") {
+      throw new TypeError(callback + " is not a function");
+    }
+    let filtered = []
+    for(let i=0;i<this.length;i++){
+        if(callback(this[i], i, this)){
+            filtered.push(this[i])
+        }
+    }
+    return filtered
+}
+
+let filtered = numbers.myFilter((each, i, arr) => each % 2 === 0)
+console.log(filtered)
