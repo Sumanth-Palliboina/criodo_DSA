@@ -66,7 +66,7 @@ console.log(optimizedBubbleSort([1,2,3,4,5]))
  * iteration:  0
 [ 1, 2, 3, 4, 5 ]
  */
-
+console.log(bubbleSort([24,34,25,12,22,11,90]))
 
 
 
