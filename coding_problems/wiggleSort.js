@@ -29,21 +29,26 @@ Constraints
 -10^9 <= A[i] <= 10^9
  */
 
-function wiggleSort(arr, n){
-    for(let i=0;i<n-1;i++){
-        if(i%2 === 0){
-            //even index: arr[i] <= arr[i+1]
-            if(arr[i] > arr[i+1]){
-                [arr[i], arr[i+1]] = [arr[i+1], arr[i]]
+function waveSort(arr){
+     const n = arr.length;
+    //implement this function
+    for (let i = 0; i < n - 1; i++) {
+        if (i % 2 === 0) {
+            // even index: arr[i] <= arr[i+1]
+            if (arr[i] > arr[i + 1]) {
+                [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
             }
         } else {
-            //odd index: arr[i] >= arr[i+1]
-            if(arr[i] < arr[i+1]){
-                [arr[i], arr[i+1]] = [arr[i+1], arr[i]]
+            // odd index: arr[i] >= arr[i+1]
+            if (arr[i] < arr[i + 1]) {
+                [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
             }
         }
     }
-    return arr
+    return arr;
 }
 
-console.log([1, 5, 1, 1, 6, 4], 6)
+
+// Example usage
+let arr = [1, 5, 1, 1, 6, 4];
+console.log(waveSort(arr)); // [1, 4, 1, 5, 1, 6]
